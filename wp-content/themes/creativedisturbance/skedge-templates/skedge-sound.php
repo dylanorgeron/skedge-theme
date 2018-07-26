@@ -1,0 +1,41 @@
+<?php
+  /* Template Name: Skedge-Sound */
+
+  #connect
+  require_once get_template_directory()."/skedge-api/Database.php";
+  $conn = dbconn();
+
+  #get skedge records
+  $skedge = new Skedge();
+  $forms  = $skedge->retrieveAssignedRecords($conn, $user_login);
+
+  get_header();
+?>
+
+<div id="content">
+  <h2>Welcome back, <?php echo $current_user->first_name; ?>.</h2>
+  <p>Here's a look at what's on your plate.</p>
+  <br>
+  <h4>Inbox</h4>
+  <p>These forms are have been assigned to you and require action.</p>
+  <ul>
+  <?php if(!empty($forms)){foreach ($forms as $record) {
+    ?>
+    <li>
+      <?php
+        $id = $record['id'];
+        $timestamp = $record['timestamp'];
+        $created_by = $record['created_by'];
+        $type = ucfirst($record['type']);
+        if($record["stage"] == 4){
+          echo "<a href=".add_query_arg('id', $record['id'], 'skedgerecord').">[Processing] $type form from $created_by on $timestamp</a>";
+        }else{
+          echo "<a href=".add_query_arg('id', $record['id'], 'editing').">[Editing] $type form from $created_by on $timestamp</a>";
+        }
+      ?>
+    </li>
+    <?php }} ?>
+  </ul>
+</div>
+
+<?php get_footer(); ?>
