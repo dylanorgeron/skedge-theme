@@ -1,3 +1,8 @@
 stats/data/libsyn-stats-cookie
 stats/data/updateStats.sh
 storage
+plugins/index\.php
+
+plugins/hello\.php
+
+plugins/akismet/
