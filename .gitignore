@@ -1,8 +1,3 @@
-stats/data/libsyn-stats-cookie
-stats/data/updateStats.sh
-storage
-plugins/index\.php
+creativedisturbance/stats/data/libsyn-stats-cookie
 
-plugins/hello\.php
-
-plugins/akismet/
+plugins
