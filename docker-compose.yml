@@ -32,6 +32,9 @@ services:
        - type: bind
          source: ./plugins
          target: /var/www/html/wp-content/plugins
+       - type: bind
+         source: ./uploads.ini
+         target: /usr/local/etc/php/conf.d/uploads.ini
 
 
 volumes:
